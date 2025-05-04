@@ -284,7 +284,7 @@
         <!--
           - testimonials
         -->
-
+ <!--
         <section class="testimonials">
 
           <h3 class="h3 testimonials-title">Testimonials</h3>
@@ -474,7 +474,7 @@
         </section>
 
       </article>
-
+-->
 
 
  <!--
@@ -486,6 +486,14 @@
   <header>
     <h2 class="h2 article-title">Resume</h2>
   </header>
+
+  <!-- Contact Info -->
+  <section class="contact-info">
+    <div class="title-wrapper">
+      <h3 class="h3">Bryce Kan</h3>
+      <p>925-548-3667 | brycekan@usc.edu | <a href="https://www.linkedin.com/in/brycekan/" target="_blank">LinkedIn</a> | <a href="https://github.com/brycekan123" target="_blank">GitHub</a></p>
+    </div>
+  </section>
 
   <!-- Education -->
   <section class="timeline">
@@ -524,6 +532,23 @@
     </ol>
   </section>
 
+  <!-- Skills -->
+  <section class="skills">
+    <div class="title-wrapper">
+      <div class="icon-box">
+        <ion-icon name="construct-outline"></ion-icon>
+      </div>
+      <h3 class="h3">Skills</h3>
+    </div>
+
+    <ul class="skills-list">
+      <li class="skill-item">Python, C++, Java, SQL</li>
+      <li class="skill-item">Machine Learning & Data Science: TensorFlow, PyTorch, OpenCV</li>
+      <li class="skill-item">Data Analysis & Visualization: Pandas, NumPy, Matplotlib, Plotly</li>
+      <li class="skill-item">Development Tools: Git, Linux, Jupyter, VS Code</li>
+    </ul>
+  </section>
+
   <!-- Experience -->
   <section class="timeline">
     <div class="title-wrapper">
@@ -535,68 +560,96 @@
 
     <ol class="timeline-list">
       <li class="timeline-item">
-        <h4 class="h4 timeline-item-title">Software Engineering Intern, XYZ Corp.</h4>
-        <span>Jun 2023 — Aug 2023</span>
+        <h4 class="h4 timeline-item-title">Bruker, San Jose, CA</h4>
+        <span>Jun 2023 — Jul 2024</span>
         <p class="timeline-text">
-          Contributed to the development of a cloud-based application using Python and AWS. Implemented automated testing frameworks to improve deployment efficiency.
+          Research Associate<br>
+          • Developed and maintained Python pipeline for automated experimental data analysis.<br>
+          • Designed interactive Plotly dashboards to visualize complex biological datasets, enabling faster scientific insights.<br>
+          • Executed custom experimental data analysis for scientific developmental troubleshooting.
         </p>
       </li>
 
       <li class="timeline-item">
-        <h4 class="h4 timeline-item-title">Research Assistant, University of Washington</h4>
-        <span>Sep 2020 — May 2021</span>
+        <h4 class="h4 timeline-item-title">Applied Materials, Santa Clara, CA</h4>
+        <span>Jan 2022 — Jun 2023</span>
         <p class="timeline-text">
-          Assisted in data analysis for a research project on computational biology. Wrote scripts in R and Python to process large datasets and conducted statistical analysis.
+          Process Engineer<br>
+          • Co-developed an internal Laboratory Inventory Management System, improving sample tracking and reducing processing time.<br>
+          • Built data visualization pipelines using Pandas, NumPy, and Plotly to extract insights from high-volume experimental data.<br>
+          • Wrote optimized SQL queries to filter and retrieve structured data from relational databases.<br>
+          • Collaborated with software engineers and scientists to optimize spatial sequencing workflow.
+        </p>
+      </li>
+
+      <li class="timeline-item">
+        <h4 class="h4 timeline-item-title">Bruchas Lab, University of Washington</h4>
+        <span>Jun 2019 — Jun 2021</span>
+        <p class="timeline-text">
+          Undergraduate Researcher<br>
+          • Utilized MATLAB to analyze experimental excel data and generate figures for publication.<br>
+          • Analyzed neural mechanisms in brain regions associated with PTSD.
         </p>
       </li>
     </ol>
   </section>
 
-  <!-- Skills -->
-  <section class="skills">
-    <div class="title-wrapper">
-      <div class="icon-box">
-        <ion-icon name="construct-outline"></ion-icon>
-      </div>
-      <h3 class="h3">Skills</h3>
-    </div>
-
-    <ul class="skills-list">
-      <li class="skill-item">Python</li>
-      <li class="skill-item">JavaScript</li>
-      <li class="skill-item">Machine Learning</li>
-      <li class="skill-item">Data Analysis</li>
-      <li class="skill-item">Cloud Computing (AWS)</li>
-    </ul>
-  </section>
-
-  <!-- Projects -->
+  <!-- Academic Projects -->
   <section class="projects">
     <div class="title-wrapper">
       <div class="icon-box">
         <ion-icon name="laptop-outline"></ion-icon>
       </div>
-      <h3 class="h3">Projects</h3>
+      <h3 class="h3">Academic Projects</h3>
     </div>
 
     <ul class="projects-list">
       <li class="project-item">
-        <h4 class="h4 project-title">Personal Finance Tracker</h4>
+        <h4 class="h4 project-title">K-Nearest Neighbors with Hyper-parameter Tuning</h4>
         <p class="project-description">
-          A web application to track personal expenses, built using React, Node.js, and MongoDB. Implemented financial forecasting features.
+          • Performed hyperparameter tuning to find the optimal k (1–29) and distance function, by using F1-score as metric.<br>
+          • Implemented feature scaling techniques (Min-Max Scaling, Normalization) to enhance classification accuracy.<br>
+          • Explored impact of distance metrics (Euclidean, Minkowski, Cosine Similarity) on model performance and decision boundaries.
         </p>
       </li>
 
       <li class="project-item">
-        <h4 class="h4 project-title">Image Classification using CNN</h4>
+        <h4 class="h4 project-title">Linear Classification</h4>
         <p class="project-description">
-          Developed an image classification model using Convolutional Neural Networks (CNNs) in TensorFlow. Achieved 90% accuracy on a test dataset.
+          • Implemented binary classification using Perceptron and Logistic Regression, establishing decision boundary learning.<br>
+          • Optimized model parameters with stochastic gradient descent (SGD) for improved convergence and explicit biased learning.
+        </p>
+      </li>
+
+      <li class="project-item">
+        <h4 class="h4 project-title">Multiclass Car Image Classification Model</h4>
+        <p class="project-description">
+          • Utilized TensorFlow and PyTorch to develop an image classifier for distinguishing Toyota, Tesla, and Ford vehicle photos.
+        </p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Publications -->
+  <section class="publications">
+    <div class="title-wrapper">
+      <div class="icon-box">
+        <ion-icon name="newspaper-outline"></ion-icon>
+      </div>
+      <h3 class="h3">Publications</h3>
+    </div>
+
+    <ul class="publications-list">
+      <li class="publication-item">
+        <p class="publication-text">
+          Seo, D. O., Zhang, E. T., Piantadosi, S. C., Marcus, D. J., Motard, L. E., Kan, B. K., Gomez, A. M., Nguyen, T. K., Xia, L., & Bruchas, M. R. (2021). A locus coeruleus to dentate gyrus noradrenergic circuit modulates aversive contextual processing. <i>Neuron, 109</i>(13), 2116-2130.e6. <a href="https://doi.org/10.1016/j.neuron.2021.05.006" target="_blank">DOI: 10.1016/j.neuron.2021.05.006</a>
         </p>
       </li>
     </ul>
   </section>
 
 </article>
+
 
 
       <!--
