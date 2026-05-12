@@ -95,7 +95,7 @@ cv:
         summary: Integrated gigapixel WSI and clinical-text features through patch-level segmentation and attention-based clustering analysis.
         highlights:
           - PyTorch, OpenCV, Segmentation
-        url: https://github.com/brycekan123/YOUR_REPO_NAME # replace with actual repo link
+        # url: (add GitHub link when available)
         start_date: 2024-01-01
         end_date: 2024-06-01
 
@@ -103,7 +103,7 @@ cv:
         summary: Applied parameter-efficient fine-tuning to BERT-Tiny and BERT-2L, achieving ~70% accuracy improvement.
         highlights:
           - PEFT, Transformers, PyTorch
-        url: https://github.com/brycekan123/YOUR_REPO_NAME # replace with actual repo link
+        # url: (add GitHub link when available)
         start_date: 2024-01-01
         end_date: 2024-06-01
 
@@ -111,6 +111,6 @@ cv:
         summary: Implemented a cuBLAS-based 2-layer MLP with fused kernels, reducing kernel launches by 33% and achieving 1.14x speedup.
         highlights:
           - CUDA, cuBLAS, GPU Optimization
-        url: https://github.com/brycekan123/YOUR_REPO_NAME # replace with actual repo link
+        # url: (add GitHub link when available)
         start_date: 2024-01-01
         end_date: 2024-06-01

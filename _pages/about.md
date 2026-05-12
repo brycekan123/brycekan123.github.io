@@ -44,7 +44,7 @@ Outside of research, I've hiked Half Dome, run a marathon, and competed internat
 
 **Graduate Research Assistant** · [USC Machine Learning Center](https://mascle.usc.edu) · _Mar 2025 – Present_ · Los Angeles, CA
 
-_[RaMem: Contextual Reinstatement for Long-Term Agentic Memory](https://arxiv.org/abs/YOUR_RAMEM_LINK) — NeurIPS 2026_
+_RaMem: Contextual Reinstatement for Long-Term Agentic Memory — NeurIPS 2026_
 
 - Built RAG-based agentic memory pipeline enabling LLM agents to recall evidence across multi-session conversations
 - Engineered temporal evidence filtering with session metadata to remove semantically related but invalid memories
