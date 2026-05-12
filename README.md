@@ -26,19 +26,19 @@ Hard-refresh (`Cmd+Shift+R`) in the browser after rebuilds to clear cache.
 
 ## Key Files to Edit
 
-| File | What it controls |
-|---|---|
-| `_pages/about.md` | Homepage bio, experience, education |
-| `_bibliography/papers.bib` | Publications (BibTeX) |
-| `_news/` | News/announcements |
-| `_data/socials.yml` | Social links (email, GitHub, LinkedIn, Strava) |
-| `_data/cv.yml` | CV page content |
-| `_pages/contact.md` | Contact page (map, form, photo) |
-| `_sass/_layout.scss` | Custom CSS overrides |
-| `assets/img/` | Images (profile photo, publication previews, logos) |
-| `assets/img/publication_preview/` | Publication thumbnail images |
-| `assets/pdf/resume.pdf` | CV/resume PDF |
-| `_config.yml` | Site-wide settings (name, URL, scholar config) |
+| File                              | What it controls                                    |
+| --------------------------------- | --------------------------------------------------- |
+| `_pages/about.md`                 | Homepage bio, experience, education                 |
+| `_bibliography/papers.bib`        | Publications (BibTeX)                               |
+| `_news/`                          | News/announcements                                  |
+| `_data/socials.yml`               | Social links (email, GitHub, LinkedIn, Strava)      |
+| `_data/cv.yml`                    | CV page content                                     |
+| `_pages/contact.md`               | Contact page (map, form, photo)                     |
+| `_sass/_layout.scss`              | Custom CSS overrides                                |
+| `assets/img/`                     | Images (profile photo, publication previews, logos) |
+| `assets/img/publication_preview/` | Publication thumbnail images                        |
+| `assets/pdf/resume.pdf`           | CV/resume PDF                                       |
+| `_config.yml`                     | Site-wide settings (name, URL, scholar config)      |
 
 ---
 
