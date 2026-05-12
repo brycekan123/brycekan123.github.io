@@ -24,13 +24,13 @@ latest_posts:
   enabled: false
 ---
 
-I'm Bryce Kan, an ML researcher and CS Master's student at USC. I build systems at the intersection of **agentic AI, retrieval, and NLP** — currently focused on long-term memory for LLM agents and LLM-powered recommendation systems that reason about both preference and qualification.
+I'm Bryce Kan, an ML researcher and CS Master's student at USC. I build systems at the intersection of **agentic AI, retrieval, and NLP**, currently focused on long-term memory for LLM agents and LLM-powered recommendation systems that reason about both preference and qualification.
 
-My path into ML started in biology. After studying [Molecular and Cell Biology](https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-67040893e845e109dda9bb0f) at the [University of Washington](https://www.washington.edu/), I spent 2.5 years in the biotech industry — building automated imaging pipelines at Applied Materials and developing data analysis tools at Bruker for spatial gene expression analysis. That work gave me a rigorous, data-driven mindset and ultimately sparked my full transition into machine learning and computer science.
+My path into ML started in biology. After studying [Molecular and Cell Biology](https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-67040893e845e109dda9bb0f) at the [University of Washington](https://www.washington.edu/), I spent 2.5 years in the biotech industry, building automated imaging pipelines at Applied Materials and developing data analysis tools at Bruker for spatial gene expression analysis. Working closely with scientists and engineers there is what got me hooked on machine learning and pushed me to make the full switch into CS.
 
-I'm now fully focused on NLP, retrieval-augmented generation (RAG), and agentic systems. I care about building models that don't just answer questions — they remember, retrieve, and reason. Long-term, I want to work as an ML engineer or researcher at the frontier of these technologies.
+I'm now fully focused on NLP, retrieval-augmented generation (RAG), and agentic systems. I want to build models that don't just answer questions but actually remember, retrieve, and reason. Long-term I'm aiming to work as an ML engineer or researcher in this space.
 
-Outside of research, I've hiked Half Dome, run a marathon, and competed internationally in junior badminton. I'm drawn to hard problems and the people willing to attack them.
+Outside of research, I've hiked Half Dome, run a marathon, and competed internationally in junior badminton.
 
 ---
 
