@@ -8,6 +8,11 @@
     var input = document.getElementById('password-input');
     var err = document.getElementById('password-error');
 
+    /* clear unlock on refresh so the gate re-appears */
+    var navEntry = performance.getEntriesByType('navigation')[0];
+    var navType = navEntry ? navEntry.type : (performance.navigation || {}).type;
+    if (navType === 'reload' || navType === 1) sessionStorage.removeItem(KEY);
+
     if (sessionStorage.getItem(KEY) === '1') return;
 
     gate.style.display = 'block';
