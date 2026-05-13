@@ -27,12 +27,22 @@ This guide helps you add website analytics to track visitor statistics and behav
 
 Analytics help you understand your website visitors: where they come from, which pages they visit, and how they interact with your content. al-folio supports several analytics providers that you can enable in `_config.yml`.
 
+If you want both location data and a separate count for people who get through your password gate, this repo now emits the following custom events when an analytics provider supports event tracking:
+
+- `password_gate_unlocked`
+- `password_gate_failed`
+
+The events include:
+
+- `gate_name`
+- `page_path`
+
 ## Supported Analytics Services
 
 Currently implemented in al-folio:
 
 - **Google Analytics** – Free, feature-rich, but collects user data
-- **Pirsch Analytics** – GDPR-compliant, free tier available, European servers
+- **Pirsch Analytics** – GDPR-compliant, paid after trial, European servers
 - **Openpanel Analytics** – Open-source option, privacy-focused
 - **Cronitor** – Uptime monitoring with Real User Monitoring (RUM) analytics
 
@@ -86,7 +96,7 @@ If you're concerned about user privacy or GDPR compliance, consider these altern
 
 - ✅ GDPR compliant
 - ✅ European servers
-- ✅ Free tier available
+- ✅ Privacy-friendly setup
 - ✅ Simple integration
 - ✅ No cookie consent needed
 
@@ -113,6 +123,8 @@ If you're concerned about user privacy or GDPR compliance, consider these altern
 - ✅ Self-hosted option available
 - ✅ Privacy-focused
 - ✅ Modern dashboard
+- ✅ Built-in world map plus country, region, and city views
+- ⚠️ Hosted cloud version is a trial unless you qualify for their OSS program or self-host
 
 **Setup:**
 
@@ -122,6 +134,8 @@ If you're concerned about user privacy or GDPR compliance, consider these altern
 4. In `_config.yml`, set `enable_openpanel_analytics: true`
 5. Add your Client ID: `openpanel_analytics: YOUR_CLIENT_ID` (format: UUID)
 6. Commit and push
+
+**Recommended for this site:** If you want a more modern, map-based dashboard than ClustrMaps, OpenPanel is the best fit among the analytics options already supported by this theme.
 
 ---
 
@@ -171,8 +185,8 @@ If you're in the European Union or serve EU visitors, consider GDPR requirements
 | Service              | Free         | GDPR                | Setup  | Features         | Best for                   |
 | -------------------- | ------------ | ------------------- | ------ | ---------------- | -------------------------- |
 | **Google Analytics** | ✅           | ⚠️ Requires consent | Easy   | Detailed reports | Detailed tracking          |
-| **Pirsch**           | ✅ Free tier | ✅                  | Easy   | Balanced         | GDPR compliance            |
-| **Openpanel**        | ✅           | ✅                  | Medium | Modern dashboard | Privacy-focused developers |
+| **Pirsch**           | Trial / Paid | ✅                  | Easy   | Balanced         | GDPR compliance            |
+| **Openpanel**        | Trial / OSS  | ✅                  | Medium | Modern dashboard | Privacy-focused developers |
 | **Cronitor**         | Paid         | ⚠️ Requires consent | Easy   | Uptime + RUM     | Uptime monitoring          |
 
 ---
@@ -182,5 +196,12 @@ If you're in the European Union or serve EU visitors, consider GDPR requirements
 1. **Choose a service** based on your needs (privacy, features, budget)
 2. **Follow the setup guide** for your chosen service
 3. **Verify it's working** by visiting your site and checking the analytics dashboard
+
+For password-gate stats:
+
+1. Turn on a provider that supports custom events, such as Google Analytics, OpenPanel, or Pirsch
+2. Visit the site and enter the password once
+3. Confirm that `password_gate_unlocked` appears in the provider's real-time or events view
+4. Use the provider's location reporting to see where those visitors came from
 
 For more customization help, see [CUSTOMIZE.md](CUSTOMIZE.md).

@@ -200,7 +200,7 @@
   <script defer src="{{ '/assets/js/cookie-consent-setup.js' | relative_url }}"></script>
 {% endif %}
 
-{% if site.enable_google_analytics %}
+{% if site.enable_google_analytics and site.google_analytics %}
   <!-- Analytics -->
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script
@@ -219,7 +219,9 @@
   ></script>
 {% endif %}
 
-{% if site.enable_cronitor_analytics %}
+<script defer src="{{ '/assets/js/analytics-events.js' | relative_url }}"></script>
+
+{% if site.enable_cronitor_analytics and site.cronitor_analytics %}
   <!-- Cronitor RUM -->
   <script
     {% if site.enable_cookie_consent %}
@@ -236,7 +238,7 @@
     src="{{ '/assets/js/cronitor-analytics-setup.js' | relative_url }}"
   ></script>
 {% endif %}
-{% if site.enable_pirsch_analytics %}
+{% if site.enable_pirsch_analytics and site.pirsch_analytics %}
   <script
     {% if site.enable_cookie_consent %}
       type="text/plain" data-category="analytics"
@@ -247,7 +249,7 @@
     data-code="{{ site.pirsch_analytics }}"
   ></script>
 {% endif %}
-{% if site.enable_openpanel_analytics %}
+{% if site.enable_openpanel_analytics and site.openpanel_analytics %}
   <script
     {% if site.enable_cookie_consent %}
       type="text/plain" data-category="analytics"
