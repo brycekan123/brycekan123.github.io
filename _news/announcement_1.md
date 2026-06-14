@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Starting as a SWE-Agentic AI Master's Intern at [Honeywell](https://www.honeywell.com) in Atlanta, GA — working on MCP servers, agentic workflows, and LLM-powered tooling.
+Starting as a SWE-Agentic AI Master's Intern at [Honeywell](https://www.honeywell.com) in Atlanta, GA — working on LLM evaluation workflows.

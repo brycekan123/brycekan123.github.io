@@ -17,8 +17,8 @@
 
   <!-- Body -->
   <body class="{% if site.navbar_fixed %}fixed-top-nav{% endif %} {% unless site.footer_fixed %}sticky-bottom-footer{% endunless %}">
-    <!-- Password gate -->
-    {% include password_gate.liquid %}
+    <!-- Password gate (disabled) -->
+    {% comment %}{% include password_gate.liquid %}{% endcomment %}
 
     <!-- Header -->
     {% include header.liquid %}

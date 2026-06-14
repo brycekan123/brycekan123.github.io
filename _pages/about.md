@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: "Graduate Researcher @ <a href='https://mascle.usc.edu'>USC ML Center</a> | NLP · Agentic AI · Retrieval"
+subtitle: "Graduate Researcher @ <a href='https://mascle.usc.edu'>USC ML Center</a> | LLM Post-training · Agentic AI · NLP"
 
 profile:
   align: right
@@ -24,11 +24,11 @@ latest_posts:
   enabled: false
 ---
 
-I'm Bryce Kan, an ML researcher and CS Master's student at USC. I build systems at the intersection of **agentic AI, retrieval, and NLP**, currently focused on long-term memory for LLM agents and LLM-powered recommendation systems that reason about both preference and qualification.
+I'm Bryce Kan, an ML researcher and CS Master's student at USC. I work at the intersection of **LLM post-training, agentic AI, and NLP**, currently focused on long-term memory for LLM agents and LLM-powered recommendation systems that reason about both preference and qualification.
 
 My path into ML started in biology. After studying [Molecular and Cell Biology](https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-67040893e845e109dda9bb0f) at the [University of Washington](https://www.washington.edu/), I spent 2.5 years in the biotech industry, building automated imaging pipelines at Applied Materials and developing data analysis tools at Bruker for spatial gene expression analysis. Working closely with scientists and engineers there is what got me hooked on machine learning and pushed me to make the full switch into CS.
 
-I'm now fully focused on NLP, retrieval-augmented generation (RAG), and agentic systems. I want to build models that don't just answer questions but actually remember, retrieve, and reason. Long-term I'm aiming to work as an ML engineer or researcher in this space.
+I'm now fully focused on LLM post-training, agentic AI, and NLP. I want to build models that don't just answer questions but actually remember, reason, and improve through training. Long-term I'm aiming to work as an ML engineer or researcher in this space.
 
 Outside of research, I've hiked Half Dome, run a marathon, and competed internationally in junior badminton.
 
@@ -38,13 +38,13 @@ Outside of research, I've hiked Half Dome, run a marathon, and competed internat
 
 **SWE-Agentic AI Master's Intern** · [Honeywell](https://www.honeywell.com) · _May 2026 – Aug 2026_ · Atlanta, GA
 
-- Building MCP server infrastructure for agentic AI workflows
-- Developing chatbot with natural language to SQL query generation
-- AWS-based model deployment and serving
+- Built a multi-turn conversation judge LLM eval framework for task completion, context retention, and error recovery scenarios
+- Integrated Anthropic, OpenAI, Databricks, and Ollama APIs; built FastAPI backend with multi-model comparison dashboard
+- Deployed code in production-ready Docker container; reduced latency and token usage by ~65% via parallelized API calls
 
 **Graduate Research Assistant** · [USC Machine Learning Center](https://mascle.usc.edu) · _Mar 2025 – Present_ · Los Angeles, CA
 
-_RaMem: Contextual Reinstatement for Long-Term Agentic Memory — NeurIPS 2026_
+_RaMem: Contextual Reinstatement for Long-Term Agentic Memory — Manuscript under Review_
 
 - Built RAG-based agentic memory pipeline enabling LLM agents to recall evidence across multi-session conversations
 - Engineered temporal evidence filtering with session metadata to remove semantically related but invalid memories

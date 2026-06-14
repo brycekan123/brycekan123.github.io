@@ -4,7 +4,7 @@ cv:
   email: brycekan@usc.edu
   location: Los Angeles, CA
   image: ""
-  summary: Master's student in Computer Science at USC, focused on machine learning, NLP, and computer vision. Former biotech researcher turned ML engineer.
+  summary: Master's student in Computer Science at USC, focused on LLM post-training, agentic AI, and NLP. Building LLM eval frameworks, agentic memory systems, and recommendation models. Former biotech researcher turned ML engineer.
 
   social_networks:
     - network: GitHub
@@ -39,9 +39,9 @@ cv:
         start_date: 2026-05-01
         end_date: 2026-08-01
         highlights:
-          - Built MCP server for agentic AI workflows
-          - Developed chatbot with SQL query generation
-          - AWS deployment and model serving
+          - Built a multi-turn conversation judge LLM eval framework for task completion, context retention, and error recovery scenarios
+          - Integrated Anthropic, OpenAI, Databricks, and Ollama APIs; built FastAPI backend with multi-model comparison dashboard
+          - Deployed code in production-ready Docker container; reduced latency and token usage by ~65% via parallelized API calls
 
       - company: USC Machine Learning Center
         position: Graduate Research Assistant
@@ -83,7 +83,7 @@ cv:
       - name: Frameworks & Libraries
         level: Expert
         icon: fa-solid fa-cubes
-        keywords: "PyTorch, OpenCV, sentence-transformers, Scikit-learn, Hugging Face, Pandas, Matplotlib, Numpy"
+        keywords: "PyTorch, sentence-transformers, Scikit-learn, Langgraph, Pandas, Matplotlib, Numpy"
 
       - name: Developer Tools
         level: Expert
