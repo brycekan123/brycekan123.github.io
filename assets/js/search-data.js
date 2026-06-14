@@ -414,7 +414,7 @@ ninja.data = [{
           section: "News",},{id: "news-new-preprint-out-de-conflating-preference-and-qualification-constrained-dual-perspective-reasoning-for-job-recommendation-with-llms-2-6-recall-5-and-3-ndcg-5-over-llm-baselines",
           title: 'New preprint out — De-conflating Preference and Qualification: Constrained Dual-Perspective Reasoning for Job...',
           description: "",
-          section: "News",},{id: "news-starting-as-a-swe-agentic-ai-master-s-intern-at-honeywell-in-atlanta-ga-working-on-mcp-servers-agentic-workflows-and-llm-powered-tooling",
+          section: "News",},{id: "news-starting-as-a-swe-agentic-ai-master-s-intern-at-honeywell-in-atlanta-ga-working-on-llm-evaluation-workflows",
           title: 'Starting as a SWE-Agentic AI Master’s Intern at Honeywell in Atlanta, GA —...',
           description: "",
           section: "News",},{id: "news-graduating-from-usc-with-an-ms-in-computer-science-looking-forward-to-what-comes-next",
