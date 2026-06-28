@@ -39,21 +39,25 @@ cv:
         start_date: 2026-05-01
         end_date: 2026-08-01
         highlights:
-          - Built a multi-turn conversation judge LLM eval framework for task completion, context retention, and error recovery scenarios
-          - Integrated Anthropic, OpenAI, Databricks, and Ollama APIs; built FastAPI backend with multi-model comparison dashboard
-          - Deployed code in production-ready Docker container; reduced latency and token usage by ~65% via parallelized API calls
+          - Built agentic evaluation judge framework across task completion, context retention, and error recovery scenarios
+          - Routed LLM inference across Anthropic and OpenAI via OpenAI-compatible layer; built FastAPI-backed data visualizer
+          - Dockerized and deployed eval pipeline; integrated Databricks model-serving endpoints, tracking per-call cost and latency
 
       - company: USC Machine Learning Center
         position: Graduate Research Assistant
         location: Los Angeles, CA
         start_date: 2025-03-01
         end_date: present
-        summary: "RaMem: Contextual Reinstatement for Long-Term Agentic Memory & Student-Job Recommendation System"
         highlights:
+          - "**RaMem: Contextual Reinstatement for Long-Term Agentic Memory**"
           - Built RAG-based agentic memory pipeline enabling LLM agents to recall evidence across multi-session conversations
+          - Engineered temporal evidence filtering with session metadata to remove semantically related but invalid memories
           - Implemented hybrid retrieval with Reciprocal Rank Fusion (RRF) over semantic search and BM25, improving F1 by 11.6 points across GPT-4o, GPT-4.1-mini, and Qwen3-8B
-          - Reduced retrieved-memory context by 50% while preserving performance against state-of-the-art baselines
-          - Led end-to-end development of job recommendation system as 1st author, mentoring 2 Master's students
+          - Reduced prompt context length by 50% while preserving performance against state-of-the-art agent memory baselines
+          - "**Student-Job Recommendation System**"
+          - Led end-to-end development as 1st author, mentoring 2 Master's students and collaborating with PhD candidates
+          - Tackled cold-start scenarios using synthetic explanation generation via GPT-4o-mini distillation into Llama-3-8B-Instruct for student-teacher learning
+          - Implemented multi-step fine-tuning via dual optimization framework with LoRA, simultaneously optimizing 2 objectives for ranking (InfoNCE contrastive loss)
           - "Achieved up to 2.6× (Recall@5) and over 3× (NDCG@5) improvement over LLM baselines"
 
       - company: Bruker
@@ -99,11 +103,10 @@ cv:
         start_date: 2024-01-01
         end_date: 2024-06-01
 
-      - name: Efficient Fine-Tuning of Lightweight BERT Models with LoRA
-        summary: Applied parameter-efficient fine-tuning to BERT-Tiny and BERT-2L, achieving ~70% accuracy improvement.
+      - name: MCP-Powered GitHub Repository Analytics
+        summary: Custom MCP server with 10 tools, storing repository data in a SQL database to generate insights while minimizing API calls.
         highlights:
-          - PEFT, Transformers, PyTorch
-        # url: (add GitHub link when available)
+          - Python, FastMCP, SQLite, GitHub API
         start_date: 2024-01-01
         end_date: 2024-06-01
 
