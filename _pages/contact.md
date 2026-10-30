@@ -2,21 +2,19 @@
 layout: page
 title: contact
 permalink: /contact/
-description: Get in touch.
 nav: true
 nav_order: 7
 ---
 
-## Get in Touch
-
 I'm always happy to chat about research, ML engineering, or potential collaborations.
 
-|              |                                                                          |
-| :----------- | :----------------------------------------------------------------------- |
-| **Email**    | [brycekan@usc.edu](mailto:brycekan@usc.edu)                              |
-| **LinkedIn** | [linkedin.com/in/brycekan](https://www.linkedin.com/in/brycekan/)        |
-| **GitHub**   | [github.com/brycekan123](https://github.com/brycekan123)                 |
-| **Strava**   | [strava.com/athletes/40518623](https://www.strava.com/athletes/40518623) |
+|                    |                                                                                                          |
+| :----------------- | :------------------------------------------------------------------------------------------------------- |
+| **Email**          | [brycekan@usc.edu](mailto:brycekan@usc.edu)                                                              |
+| **LinkedIn**       | [linkedin.com/in/brycekan](https://www.linkedin.com/in/brycekan/)                                        |
+| **GitHub**         | [github.com/brycekan123](https://github.com/brycekan123)                                                 |
+| **Google Scholar** | [scholar.google.com/citations?user=bEfsZoEAAAAJ](https://scholar.google.com/citations?user=bEfsZoEAAAAJ) |
+| **Strava**         | [strava.com/athletes/40518623](https://www.strava.com/athletes/40518623)                                 |
 
 ---
 

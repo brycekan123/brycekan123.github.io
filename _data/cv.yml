@@ -4,7 +4,7 @@ cv:
   email: brycekan@usc.edu
   location: Los Angeles, CA
   image: ""
-  summary: Master's student in Computer Science at USC, focused on LLM post-training, agentic AI, and NLP. Building LLM eval frameworks, agentic memory systems, and recommendation models. Former biotech researcher turned ML engineer.
+  summary: Master's student in Computer Science at USC, focused on LLM post-training, agentic AI, and NLP. Building LLM eval frameworks, agentic memory systems, and recommendation models.
 
   social_networks:
     - network: GitHub
@@ -22,7 +22,7 @@ cv:
         start_date: 2024-08-01
         end_date: 2026-12-01
         score: ""
-        courses: "Algorithms, Machine Learning, Natural Language Processing, Trustworthy ML, Hardware for ML"
+        courses: "Algorithms, Machine Learning, Natural Language Processing, Trustworthy LLMs, Hardware for ML"
 
       - institution: University of Washington
         location: Seattle, WA
@@ -57,7 +57,7 @@ cv:
           - "**Student-Job Recommendation System**"
           - Led end-to-end development as 1st author, mentoring 2 Master's students and collaborating with PhD candidates
           - Tackled cold-start scenarios using synthetic explanation generation via GPT-4o-mini distillation into Llama-3-8B-Instruct for student-teacher learning
-          - Implemented multi-step fine-tuning via dual optimization framework with LoRA, simultaneously optimizing 2 objectives for ranking (InfoNCE contrastive loss)
+          - Implemented multi-step fine-tuning via dual optimization framework with LoRA, jointly training 2 objectives for ranking (InfoNCE contrastive loss)
           - "Achieved up to 2.6× (Recall@5) and over 3× (NDCG@5) improvement over LLM baselines"
 
       - company: Bruker
@@ -77,6 +77,25 @@ cv:
         highlights:
           - Launched Lab Inventory Database, delivering full workflow traceability and reducing processing time by 80%
           - Built automated data visualization pipelines using Pandas and Plotly to extract insights from terabyte-sized datasets
+
+    Publications:
+      - title: "RaMem: Contextual Reinstatement for Long-Term Agentic Memory"
+        publisher: arXiv
+        releaseDate: 2026-06-01
+        url: https://arxiv.org/abs/2606.22844
+        summary: "Yang, W., **Kan, B.**, et al."
+
+      - title: "De-conflating Preference and Qualification: Constrained Dual-Perspective Reasoning for Job Recommendation with Large Language Models"
+        publisher: arXiv
+        releaseDate: 2026-02-01
+        url: https://arxiv.org/abs/2602.03097
+        summary: "**Kan, B.**, et al."
+
+      - title: A locus coeruleus to dentate gyrus noradrenergic circuit modulates aversive contextual processing
+        publisher: Neuron
+        releaseDate: 2021-01-01
+        url: https://doi.org/10.1016/j.neuron.2021.05.006
+        summary: "Seo, D.-O., Zhang, E. T., Piantadosi, S. C., Marcus, D. J., Motard, L. E., **Kan, B. K.**, et al."
 
     Skills:
       - name: Programming Languages
@@ -99,7 +118,7 @@ cv:
         summary: Integrated gigapixel WSI and clinical-text features through patch-level segmentation and attention-based clustering analysis.
         highlights:
           - PyTorch, OpenCV, Segmentation
-        # url: (add GitHub link when available)
+        url: https://github.com/brycekan123/HnESegmentationWSI
         start_date: 2024-01-01
         end_date: 2024-06-01
 
@@ -107,6 +126,7 @@ cv:
         summary: Custom MCP server with 10 tools, storing repository data in a SQL database to generate insights while minimizing API calls.
         highlights:
           - Python, FastMCP, SQLite, GitHub API
+        url: https://github.com/brycekan123/repohealth-mcp
         start_date: 2024-01-01
         end_date: 2024-06-01
 
@@ -114,6 +134,6 @@ cv:
         summary: Implemented a cuBLAS-based 2-layer MLP with fused kernels, reducing kernel launches by 33% and achieving 1.14x speedup.
         highlights:
           - CUDA, cuBLAS, GPU Optimization
-        # url: (add GitHub link when available)
+        url: https://github.com/brycekan123/CuBLAS_MLP_implementation
         start_date: 2024-01-01
         end_date: 2024-06-01

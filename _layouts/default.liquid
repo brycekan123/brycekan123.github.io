@@ -55,5 +55,10 @@
 
     <!-- JavaScripts -->
     {% include scripts.liquid %}
+
+    <!-- Visitor map tracker: load hidden on every page so all visits are counted (the map itself shows on /visitors/) -->
+    {% if site.visitor_map.enabled and site.visitor_map.embed_html != blank and page.permalink != '/visitors/' %}
+      <div style="display: none" aria-hidden="true">{{ site.visitor_map.embed_html }}</div>
+    {% endif %}
   </body>
 </html>

@@ -80,7 +80,7 @@ ul.task-list input[type="checkbox"] {
 
 @media (min-width: 576px) {
   .profile {
-    width: 30%;
+    width: 36%;
 
     .address {
       p {
@@ -212,6 +212,45 @@ ul.task-list input[type="checkbox"] {
 
   .contact-note {
     font-size: 0.8rem;
+  }
+
+  // Compact, left-aligned icon row under the name on the about page
+  &.social-top {
+    text-align: left;
+    margin: 0.25rem 0 0.5rem;
+
+    .contact-email {
+      display: inline-block;
+      margin-top: 0.4rem;
+      font-family: monospace;
+      font-size: 1.05rem;
+    }
+
+    .contact-icons {
+      font-size: 3.5rem;
+      line-height: 1;
+
+      a {
+        margin-right: 1rem;
+
+        img {
+          width: 3.2rem;
+          height: 3.2rem;
+          margin-bottom: 0;
+        }
+
+        svg {
+          width: 3.2rem;
+          height: 3.5rem;
+          margin-bottom: 0;
+
+          image {
+            width: 3.2rem;
+            height: 3.2rem;
+          }
+        }
+      }
+    }
   }
 }
 

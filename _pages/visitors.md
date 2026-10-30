@@ -12,8 +12,7 @@ _styles: |
   }
 
   .visitor-map-hero,
-  .visitor-map-card,
-  .visitor-map-footer {
+  .visitor-map-card {
     border: 1px solid var(--global-divider-color);
     border-radius: 24px;
     padding: 1.5rem;
@@ -36,8 +35,7 @@ _styles: |
   }
 
   .visitor-map-hero h2,
-  .visitor-map-card h3,
-  .visitor-map-footer h3 {
+  .visitor-map-card h3 {
     margin-bottom: 0.75rem;
   }
 
@@ -94,36 +92,9 @@ _styles: |
     margin-top: 0.55rem;
   }
 
-  .visitor-map-grid {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-    margin-top: 1rem;
-  }
-
-  .visitor-map-stat {
-    border-radius: 18px;
-    padding: 1rem 1.1rem;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(15, 23, 42, 0.04));
-    border: 1px solid var(--global-divider-color);
-  }
-
-  .visitor-map-stat strong {
-    display: block;
-    margin-bottom: 0.35rem;
-    font-size: 0.92rem;
-  }
-
-  .visitor-map-stat p {
-    margin: 0;
-    color: var(--global-text-color-light);
-    font-size: 0.95rem;
-  }
-
   @media (max-width: 576px) {
     .visitor-map-hero,
-    .visitor-map-card,
-    .visitor-map-footer {
+    .visitor-map-card {
       padding: 1.2rem;
       border-radius: 20px;
     }
@@ -189,21 +160,4 @@ _styles: |
 
   </section>
 
-  <section class="visitor-map-footer">
-    <h3>What this page is meant to show</h3>
-    <div class="visitor-map-grid">
-      <div class="visitor-map-stat">
-        <strong>Public map</strong>
-        <p>A visual map of roughly where visitors are coming from.</p>
-      </div>
-      <div class="visitor-map-stat">
-        <strong>Approximate only</strong>
-        <p>City and country level in most cases, not an exact address or precise GPS position.</p>
-      </div>
-      <div class="visitor-map-stat">
-        <strong>Separate from GA</strong>
-        <p>Google Analytics still handles background reporting and password-gate event counts.</p>
-      </div>
-    </div>
-  </section>
 </div>

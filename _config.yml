@@ -6,7 +6,7 @@ title: blank # the website title (if blank, full name will be used instead)
 first_name: Bryce
 last_name: Kan
 contact_note: >
-  Best reached via email at brycekan@usc.edu.
+  Last updated October 29th, 2026
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   MS Computer Science student at USC, researching machine learning, NLP, and computer vision.
 footer_text: >
@@ -54,10 +54,10 @@ external_services:
 
 navbar_fixed: true
 footer_fixed: true
-search_enabled: true
+search_enabled: false
 socials_in_search: true
 posts_in_search: true
-bib_search: true
+bib_search: false
 
 # Dimensions
 max_width: 930px
