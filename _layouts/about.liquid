@@ -75,7 +75,10 @@ layout: default
     <!-- Social (icons are shown in the header above) -->
     {% if page.social %}
       <div class="social">
-        <div class="contact-note">{{ site.contact_note }}</div>
+        {% comment %} {last_updated} in contact_note becomes the build date, so it refreshes on every deploy {% endcomment %}
+        {% capture placeholder %}{last_updated}{% endcapture %}
+        {% assign last_updated = site.time | date_to_long_string: 'ordinal', 'US' %}
+        <div class="contact-note">{{ site.contact_note | replace: placeholder, last_updated }}</div>
       </div>
     {% endif %}
 

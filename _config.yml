@@ -5,8 +5,8 @@
 title: blank # the website title (if blank, full name will be used instead)
 first_name: Bryce
 last_name: Kan
-contact_note: >
-  Last updated October 29th, 2026
+contact_note: > # {last_updated} is filled in with the build date (see _layouts/about.liquid); don't hardcode a date
+  Last updated {last_updated}
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   MS Computer Science student at USC, researching machine learning, NLP, and computer vision.
 footer_text: >
@@ -20,6 +20,7 @@ icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name 
 url: https://brycekan123.github.io # the base hostname & protocol for your site
 baseurl: # the subpath of your site, e.g. /blog/. Leave blank for root
 last_updated: false # set to true if you want to display last updated in the footer
+timezone: America/Los_Angeles # build dates (like the homepage "Last updated") use LA time instead of the UTC build server's
 impressum_path: # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
 back_to_top: true # set to false to disable the back to top button
 

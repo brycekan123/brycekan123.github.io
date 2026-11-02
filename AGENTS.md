@@ -58,6 +58,7 @@ When modifying `_config.yml`, these **must be updated together**:
 - **Personal site:** `url: https://username.github.io` + `baseurl:` (empty)
 - **Project site:** `url: https://username.github.io` + `baseurl: /repo-name/`
 - **YAML errors:** Quote strings with special characters: `title: "My: Cool Site"`
+- **"Last updated" on the homepage:** `contact_note` in `_config.yml` uses a `{last_updated}` placeholder that `_layouts/about.liquid` fills with the build date (LA time, via `timezone:`), so it refreshes on every deploy. Never replace it with a hand-typed date.
 
 ## Development Workflow
 
