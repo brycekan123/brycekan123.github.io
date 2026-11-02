@@ -7,8 +7,18 @@
 
   const WORLD_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json";
   const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const TOUR_MS = 2600;
-  const TOUR_MS_REDUCED = 3000;
+  const PIN_ALT = 0.02;
+  const ROAD_ALT = 0.008; // just above the country shapes
+  const DWELL_MS = 600;
+  const STOPOVER_MS = 150; // brief pause at home between trips
+  const FRAME_MS = 560; // camera move that frames each leg before it starts
+  const DWELL_MS_REDUCED = 3000;
+  const DEG = Math.PI / 180;
+  // Plane: Material Icons "flight" (Apache 2.0), nose pointing up. Car and train: side views, facing right.
+  const VEHICLE_SVG =
+    '<svg class="tg-icon-plane" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>' +
+    '<svg class="tg-icon-car" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 15v-3l2-1 2.5-4h8l3.5 4 3 .6V15z"/><circle cx="7" cy="16" r="2.2"/><circle cx="17" cy="16" r="2.2"/></svg>' +
+    '<svg class="tg-icon-train" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M2 7h11c4 0 7.5 2.5 9 7v2H2zM4 9h3v2.5H4zm5 0h3v2.5H9zm5 0h1.8c1.5.2 2.8 1 3.8 2.5H14z"/><circle cx="6" cy="17.6" r="1.4"/><circle cx="11" cy="17.6" r="1.4"/><circle cx="17" cy="17.6" r="1.4"/></svg>';
 
   const $ = (id) => document.getElementById(id);
   const globeEl = $("tg-globe");
@@ -17,6 +27,7 @@
   const resetBtn = $("tg-reset");
   const card = {
     photo: $("tg-card-photo"),
+    img: $("tg-card-img"),
     region: $("tg-card-region"),
     place: $("tg-card-place"),
     date: $("tg-card-date"),
@@ -42,8 +53,17 @@
       lat: p.lat,
       lng: p.lng,
       photo: photoUrl(p.photo),
+      // Card framing: which point of the photo to keep ("x% y%") and how far to zoom around it.
+      focus: /^\d{1,3}% \d{1,3}%$/.test(p.photo_focus) ? p.photo_focus : "50% 50%",
+      zoom: typeof p.photo_zoom === "number" && p.photo_zoom >= 1 && p.photo_zoom <= 3 ? p.photo_zoom : 1,
       caption: p.caption ? String(p.caption) : "",
       date: p.date == null ? "" : String(p.date).trim(),
+      dateLabel: p.date_label ? String(p.date_label) : "",
+      color: /^#[0-9a-f]{6}$/i.test(p.color) ? p.color : "",
+      color2: /^#[0-9a-f]{6}$/i.test(p.color2) ? p.color2 : "",
+      by: p.by === "car" || p.by === "train" ? p.by : "plane",
+      home: p.home === true,
+      backHome: ["car", "train", "plane"].includes(p.back_home) ? p.back_home : "",
     }));
 
   // Dated places oldest first (the strings sort correctly), then undated ones in file order.
@@ -56,9 +76,15 @@
   let world = null;
   let hoverCountry = null;
   let active = null;
-  let tourTimer = null;
+  let tour = null; // the running tour: { timers, frame }; null when idle
+  let routes = []; // route lines drawn by the tour: { points: [[lat, lng, alt], ...], colors, partial }
   const pinEls = new Map();
   const chipEls = new Map();
+
+  const vehicleEl = document.createElement("div");
+  vehicleEl.className = "tg-vehicle";
+  vehicleEl.innerHTML = VEHICLE_SVG;
+  globeEl.after(vehicleEl);
 
   const home = () => ({ lat: 36, lng: -108, altitude: globeEl.clientWidth < 520 ? 2.3 : 1.7 });
 
@@ -81,40 +107,191 @@
 
   function showCard(p) {
     card.photo.classList.toggle("tg-empty", !p.photo);
-    card.photo.style.backgroundImage = p.photo ? `url(${JSON.stringify(p.photo)})` : "";
-    card.photo.setAttribute("aria-label", p.photo ? `Photo from ${p.place}` : "Photo coming soon.");
+    card.img.hidden = !p.photo;
+    if (p.photo) {
+      card.img.src = p.photo;
+      card.img.alt = `Photo from ${p.place}`;
+      card.img.style.objectPosition = p.focus;
+      card.img.style.transformOrigin = p.focus;
+      card.img.style.transform = p.zoom === 1 ? "" : `scale(${p.zoom})`;
+    } else {
+      card.img.removeAttribute("src");
+      card.img.alt = "";
+    }
     card.region.textContent = p.region;
     card.place.textContent = p.place;
-    setOptionalText(card.date, formatDate(p.date));
+    setOptionalText(card.date, p.dateLabel || formatDate(p.date));
     setOptionalText(card.caption, p.caption);
   }
 
-  function select(p, { fly = false } = {}) {
+  function select(p, { fly = false, updateCard = true } = {}) {
     active = p;
-    showCard(p);
+    if (updateCard) showCard(p);
     pinEls.forEach((el, place) => el.classList.toggle("tg-active", place === p));
     chipEls.forEach((el, place) => el.setAttribute("aria-pressed", String(place === p)));
-    if (fly && world) world.pointOfView({ lat: p.lat, lng: p.lng, altitude: 0.5 }, flyMs);
+    if (fly && world) world.pointOfView({ lat: p.lat, lng: p.lng, altitude: 0.3 }, flyMs);
   }
 
+  // A leg between two places along the great circle, so the line and the vehicle share one curve.
+  // Flights arc up and come back down; drives and train rides stay on the ground.
+  function makeLeg(from, to, ground) {
+    const vec = (p) => [Math.cos(p.lat * DEG) * Math.cos(p.lng * DEG), Math.cos(p.lat * DEG) * Math.sin(p.lng * DEG), Math.sin(p.lat * DEG)];
+    const a = vec(from);
+    const b = vec(to);
+    const angle = Math.acos(Math.min(1, Math.max(-1, a[0] * b[0] + a[1] * b[1] + a[2] * b[2])));
+    const peak = 0.03 + angle * 0.22;
+    const altAt = (t) => (ground ? ROAD_ALT : PIN_ALT + peak * Math.sin(Math.PI * t));
+    const at = (t) => {
+      const s = Math.sin(angle);
+      const ka = angle < 1e-6 ? 1 - t : Math.sin((1 - t) * angle) / s;
+      const kb = angle < 1e-6 ? t : Math.sin(t * angle) / s;
+      const [x, y, z] = [0, 1, 2].map((i) => ka * a[i] + kb * b[i]);
+      return [Math.atan2(z, Math.hypot(x, y)) / DEG, Math.atan2(y, x) / DEG, altAt(t)];
+    };
+    const samples = Math.max(24, Math.ceil(angle / DEG) * 3);
+    const points = Array.from({ length: samples + 1 }, (_, i) => at(i / samples));
+    return { angle, at, points };
+  }
+
+  // globe.gl only redraws a path it hasn't seen, so hand it fresh objects each time a route grows.
+  function drawRoutes() {
+    if (world) world.pathsData(routes.map((r) => ({ points: r.points, colors: r.colors })));
+  }
+
+  // Places the vehicle over the canvas; hidden while it is behind the globe.
+  function placeVehicle([lat, lng, alt], transform) {
+    const { x, y } = world.getScreenCoords(lat, lng, alt);
+    const p = world.getCoords(lat, lng, alt);
+    const c = world.camera().position;
+    const r = world.getGlobeRadius();
+    const visible = p.x * c.x + p.y * c.y + p.z * c.z > r * r;
+    vehicleEl.style.transform = `translate(${x}px, ${y}px) ${transform}`;
+    vehicleEl.classList.toggle("tg-moving", visible);
+  }
+
+  function wait(run, ms) {
+    return new Promise((resolve) => run.timers.push(setTimeout(resolve, ms)));
+  }
+
+  // Frames the leg, then moves the plane, car or train along it while its route line grows behind it.
+  async function travelLeg(run, from, to, by) {
+    const ground = by !== "plane";
+    const leg = makeLeg(from, to, ground);
+    const mid = leg.at(0.5);
+    const frameMs = reduceMotion ? 0 : FRAME_MS;
+    // Close in on short drives (Zion to Bryce Canyon is under 1°) and pull back for ocean crossings.
+    world.pointOfView({ lat: mid[0], lng: mid[1], altitude: Math.min(2.2, Math.max(0.18, 0.12 + leg.angle * 2.6)) }, frameMs);
+    await wait(run, frameMs);
+    if (tour !== run) return;
+
+    // With place colors, the line fades from the color of where you left to where you arrived.
+    const colors = from.color && to.color ? [from.color, to.color] : null;
+    const route = { points: leg.points, colors, partial: true };
+    routes.push(route);
+    if (reduceMotion) {
+      route.partial = false;
+      drawRoutes();
+      return;
+    }
+
+    const degrees = leg.angle / DEG;
+    const duration = ground ? Math.min(1800, 1080 + degrees * 150) : Math.min(2040, Math.max(960, 900 + degrees * 36));
+    const ease = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+    vehicleEl.classList.toggle("tg-by-car", by === "car");
+    vehicleEl.classList.toggle("tg-by-train", by === "train");
+    const start = performance.now();
+    await new Promise((resolve) => {
+      const frame = (now) => {
+        if (tour !== run) return;
+        const t = ease(Math.min(1, (now - start) / duration));
+        const here = leg.at(t);
+        const s1 = world.getScreenCoords(...leg.at(Math.max(0, t - 0.01)));
+        const s2 = world.getScreenCoords(...leg.at(Math.min(1, t + 0.01)));
+        route.points = leg.points.filter((_, i) => i / (leg.points.length - 1) <= t).concat([here]);
+        drawRoutes();
+        if (ground) {
+          // The car and train are drawn from the side, so they only flip to face left or right.
+          placeVehicle(here, `scaleX(${s2.x < s1.x ? -1 : 1})`);
+        } else {
+          const heading = (Math.atan2(s2.x - s1.x, s1.y - s2.y) * 180) / Math.PI;
+          placeVehicle(here, `rotate(${heading}deg) scale(${1 + 0.3 * Math.sin(Math.PI * t)})`);
+        }
+        if (t < 1) run.frame = requestAnimationFrame(frame);
+        else resolve();
+      };
+      run.frame = requestAnimationFrame(frame);
+    });
+    route.points = leg.points;
+    route.partial = false;
+    drawRoutes();
+    vehicleEl.classList.remove("tg-moving");
+  }
+
+  // Tour order with a stop at home after each trip that ends with back_home: brief between trips,
+  // and a full stop (home's card) when the last trip heads home.
+  function tourStops() {
+    const homeBase = places.find((p) => p.home);
+    const stops = [];
+    tourOrder.forEach((p, i) => {
+      stops.push({ place: p, by: p.by, stopover: false });
+      if (homeBase && p.backHome && p !== homeBase) {
+        stops.push({ place: homeBase, by: p.backHome, stopover: i < tourOrder.length - 1 });
+      }
+    });
+    return stops;
+  }
+
+  // Visits every stop, drawing the route as it goes, and ends at the last place.
+  async function playTour(run) {
+    const dwell = reduceMotion ? DWELL_MS_REDUCED : DWELL_MS;
+    const stops = tourStops();
+    select(stops[0].place, { fly: true });
+    // The first leg's framing takes over the camera, so there's no need to wait out the whole fly-in.
+    await wait(run, reduceMotion ? dwell : FRAME_MS + dwell);
+    for (let i = 1; i < stops.length; i++) {
+      const { place, by, stopover } = stops[i];
+      if (tour !== run) return;
+      if (world) await travelLeg(run, stops[i - 1].place, place, by);
+      if (tour !== run) return;
+      // A stop at home only lights up its pin; the card keeps the trip just finished.
+      select(place, { updateCard: !stopover });
+      if (i < stops.length - 1) await wait(run, stopover ? STOPOVER_MS : dwell);
+    }
+    if (tour === run) endTour();
+  }
+
+  function endTour() {
+    tour = null;
+    vehicleEl.classList.remove("tg-moving");
+    tourBtn.textContent = "2026 travel tour";
+  }
+
+  // Stops a running tour; finished route lines stay, the one in flight is dropped.
   function stopTour() {
-    clearInterval(tourTimer);
-    tourTimer = null;
-    tourBtn.textContent = "Fly through pins";
+    if (!tour) return;
+    tour.timers.forEach(clearTimeout);
+    cancelAnimationFrame(tour.frame);
+    routes = routes.filter((r) => !r.partial);
+    drawRoutes();
+    endTour();
   }
 
   function startTour() {
     if (!tourOrder.length) return;
-    // Fly to the place already shown first, then advance from whichever place is selected.
-    select(active || tourOrder[0], { fly: true });
-    const step = () => select(tourOrder[(tourOrder.indexOf(active) + 1) % tourOrder.length], { fly: true });
-    tourTimer = setInterval(step, reduceMotion ? TOUR_MS_REDUCED : TOUR_MS);
+    stopTour();
+    routes = [];
+    drawRoutes();
+    tour = { timers: [], frame: 0 };
+    onCountryHover(null);
     tourBtn.textContent = "Stop";
+    playTour(tour);
   }
 
   function makePin(p) {
     const anchor = document.createElement("div");
     anchor.className = "tg-pin-anchor" + (p === active ? " tg-active" : "");
+    if (p.color) anchor.style.setProperty("--tg-pin", p.color);
+    if (p.color2) anchor.style.setProperty("--tg-pin-2", p.color2);
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "tg-pin" + (p.photo ? "" : " tg-empty");
@@ -123,9 +300,9 @@
     const label = document.createElement("span");
     label.className = "tg-pin-label";
     label.textContent = p.place;
+    // While the tour runs, pins pass under a resting cursor, so hovering only previews when idle.
     btn.addEventListener("mouseenter", () => {
-      stopTour();
-      select(p);
+      if (!tour) select(p);
     });
     btn.addEventListener("click", () => {
       stopTour();
@@ -136,13 +313,31 @@
     return anchor;
   }
 
+  // Small timeline tag in front of each chip: "Home" for the home base, else the month (or year) of the visit.
+  function chipWhen(p) {
+    if (p.home) return "Home";
+    const m = /^(\d{4})(?:-(\d{1,2}))?/.exec(p.date);
+    if (!m) return "";
+    return m[2] ? MONTHS[Number(m[2]) - 1] || m[1] : m[1];
+  }
+
+  // Chips follow the tour order, so read left to right they form a timeline.
   function buildChips() {
     const wrap = $("tg-chips");
-    places.forEach((p) => {
+    tourOrder.forEach((p) => {
       const b = document.createElement("button");
       b.type = "button";
       b.className = "tg-chip" + (p.photo ? "" : " tg-empty");
-      b.textContent = p.place;
+      if (p.color) b.style.setProperty("--tg-pin", p.color);
+      if (p.color2) b.style.setProperty("--tg-pin-2", p.color2);
+      const when = chipWhen(p);
+      if (when) {
+        const tag = document.createElement("span");
+        tag.className = "tg-chip-when";
+        tag.textContent = when;
+        b.append(tag);
+      }
+      b.append(p.place);
       b.setAttribute("aria-pressed", "false");
       b.addEventListener("click", () => {
         stopTour();
@@ -162,6 +357,7 @@
     const land = token("--tg-land");
     const hover = token("--tg-land-hover");
     const stroke = token("--tg-stroke");
+    const route = token("--tg-route");
 
     const mat = world.globeMaterial();
     mat.color.set(ocean);
@@ -178,10 +374,13 @@
       .polygonSideColor(() => "rgba(0,0,0,0.06)")
       .polygonStrokeColor(() => stroke)
       .polygonAltitude((d) => (d === hoverCountry ? 0.022 : 0.006))
-      .polygonLabel((d) => `<b>${escapeHtml(d.properties.name)}</b>`);
+      .polygonLabel((d) => `<b>${escapeHtml(d.properties.name)}</b>`)
+      .pathColor((d) => d.colors || route);
   }
 
   function onCountryHover(d) {
+    // The tour moves the camera under a resting cursor, so countries only highlight when idle.
+    if (tour) d = null;
     if (d === hoverCountry) return;
     hoverCountry = d;
     paint();
@@ -194,10 +393,16 @@
       .atmosphereAltitude(0.14)
       .polygonsTransitionDuration(reduceMotion ? 0 : 250)
       .onPolygonHover(onCountryHover)
+      .pathPoints("points")
+      .pathPointLat((pt) => pt[0])
+      .pathPointLng((pt) => pt[1])
+      .pathPointAlt((pt) => pt[2])
+      .pathStroke(2)
+      .pathTransitionDuration(0)
       .htmlElementsData(places)
       .htmlLat("lat")
       .htmlLng("lng")
-      .htmlAltitude(0.02)
+      .htmlAltitude(PIN_ALT)
       .htmlElement(makePin)
       .htmlTransitionDuration(0)
       .htmlElementVisibilityModifier((el, visible) => {
@@ -214,7 +419,7 @@
 
     const controls = world.controls();
     controls.enableDamping = true;
-    controls.minDistance = 130;
+    controls.minDistance = 115; // lets the tour close in on short drives
     controls.maxDistance = 520;
     globeEl.addEventListener("pointerdown", stopTour);
 
@@ -241,9 +446,11 @@
 
   resetBtn.addEventListener("click", () => {
     stopTour();
+    routes = [];
+    drawRoutes();
     if (world) world.pointOfView(home(), flyMs);
   });
-  tourBtn.addEventListener("click", () => (tourTimer ? stopTour() : startTour()));
+  tourBtn.addEventListener("click", () => (tour ? stopTour() : startTour()));
 
   // Repaint the globe when the site's light/dark theme changes.
   new MutationObserver(paint).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });

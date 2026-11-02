@@ -1,42 +1,130 @@
 # Pins for the /travel/ globe page (_pages/travel.md + assets/js/travel-globe.js).
 # Add a place by copying an entry. Use city or park coordinates, never a photo's GPS.
+# color: the place's pin, chip and route-line color as "#rrggbb" (baby blue if left out).
+#        color2 (optional) is a second flag color for the pin's inner border, like Tokyo's white.
 # photo: a path under /assets/img/travel/ (strip the photo's metadata first). Leave it out for a small pin.
+# photo_focus: the part of the photo the card keeps, as "x% y%" ("50% 100%" = bottom middle). Default "50% 50%".
+# photo_zoom:  1.2 zooms in 20% around the focus. Default 1 (the photo just fills the card).
 # date:  "YYYY", "YYYY-MM" or "YYYY-MM-DD" in quotes. Leave it empty until it's filled in.
-#        "Fly through pins" visits dated places oldest first, then undated ones in file order.
-
-- place: Zion National Park
-  region: Utah, United States
-  lat: 37.2982
-  lng: -113.0263
-  photo: /assets/img/travel/zion.jpg
-  caption:
-  date:
-
-- place: Joshua Tree National Park
-  region: California, United States
-  lat: 33.8734
-  lng: -115.901
-  caption:
-  date:
+#        The "2026 travel tour" visits dated places oldest first, then undated ones in file order.
+#        date_label replaces the card's date text (e.g. "Since 2024 – Present"); date still sets the order.
+# by:    how you got here from the previous stop on the tour: car, train or plane (plane if left out).
+# home:  true on the home base. back_home: car, train or plane on the last place of a trip makes the tour
+#        stop briefly at home before the next trip (or end there after the last trip); leave it out to go
+#        straight on (Tokyo, Nara, Hong Kong).
 
 - place: Los Angeles
   region: California, United States
+  color: "#f5b700"
   lat: 34.0224
   lng: -118.2851
-  photo: /assets/img/travel/usc.jpg
+  photo: /assets/img/travel/los-angeles.jpg
+  photo_focus: "50% 85%"
   caption: USC, MS Computer Science.
-  date:
+  date: "2024"
+  date_label: "Since 2024 – Present"
+  home: true
 
-- place: Half Dome
-  region: Yosemite National Park, California
-  lat: 37.7459
-  lng: -119.5332
-  caption: Hiked Half Dome.
-  date:
+- place: Tokyo
+  region: Japan
+  color: "#bc002d"
+  color2: "#ffffff"
+  lat: 35.6762
+  lng: 139.6503
+  photo: /assets/img/travel/tokyo.jpg
+  caption:
+  date: "2026-01-01"
+  by: plane
+
+- place: Nara
+  region: Japan
+  color: "#22c55e"
+  lat: 34.6851
+  lng: 135.8048
+  photo: /assets/img/travel/nara.jpg
+  caption:
+  date: "2026-01-06"
+  by: train
+
+- place: Hong Kong
+  region: Hong Kong
+  color: "#ffffff"
+  color2: "#de2910"
+  lat: 22.3193
+  lng: 114.1694
+  photo: /assets/img/travel/hong-kong.jpg
+  photo_focus: "50% 25%"
+  caption:
+  date: "2026-01-08"
+  by: plane
+  back_home: plane
+
+- place: Amsterdam
+  region: Netherlands
+  color: "#f97316"
+  lat: 52.3676
+  lng: 4.9041
+  photo: /assets/img/travel/amsterdam.jpg
+  caption:
+  date: "2026-02-24"
+  by: plane
+  back_home: plane
+
+- place: Joshua Tree National Park
+  region: California, United States
+  color: "#5fa88f"
+  lat: 33.8734
+  lng: -115.901
+  photo: /assets/img/travel/joshua-tree.jpg
+  photo_focus: "64% 55%"
+  photo_zoom: 1.2
+  caption:
+  date: "2026-04-05"
+  by: car
+  back_home: car
 
 - place: Atlanta
   region: Georgia, United States
+  color: "#dc2626"
   lat: 33.749
   lng: -84.388
+  photo: /assets/img/travel/atlanta.jpg
   caption: Honeywell internship.
-  date:
+  date: "2026-07-17"
+  by: plane
+  back_home: plane
+
+- place: Kona
+  region: Hawaii, United States
+  color: "#0ea5e9"
+  lat: 19.64
+  lng: -155.9969
+  photo: /assets/img/travel/kona.jpg
+  caption:
+  date: "2026-08-16"
+  by: plane
+  back_home: plane
+
+- place: Bryce Canyon National Park
+  region: Utah, United States
+  color: "#ff8a65"
+  lat: 37.593
+  lng: -112.1871
+  photo: /assets/img/travel/bryce-canyon.jpg
+  photo_focus: "50% 65%"
+  photo_zoom: 1.2
+  caption:
+  date: "2026-10-14"
+  by: car
+
+- place: Zion National Park
+  region: Utah, United States
+  color: "#b7472a"
+  lat: 37.2982
+  lng: -113.0263
+  photo: /assets/img/travel/zion.jpg
+  photo_focus: "50% 100%"
+  caption:
+  date: "2026-10-15"
+  by: car
+  back_home: car

@@ -1,8 +1,8 @@
 ---
 layout: page
-title: travel (page pending)
+title: 2026 Travel Summary
 permalink: /travel/
-description: "Places I've been (starting from 2024)."
+description: "Click to see where I travelled this year!"
 nav: true
 nav_order: 6
 _styles: |
@@ -15,6 +15,8 @@ _styles: |
     --tg-land: #b4c3d1;
     --tg-land-hover: #89cff0;
     --tg-atmos: #a9d8f2;
+    --tg-route: #4aa8e0;
+    --tg-vehicle: #1d6fa5;
     --tg-stroke: var(--global-bg-color);
     display: grid;
     gap: 14px;
@@ -29,6 +31,8 @@ _styles: |
     --tg-land: #56606b;
     --tg-land-hover: #4f8fb3;
     --tg-atmos: #4f86a8;
+    --tg-route: #8fd0f2;
+    --tg-vehicle: #d6effc;
   }
 
   .travel-globe .tg-controls {
@@ -136,22 +140,32 @@ _styles: |
     cursor: pointer;
   }
 
+  /* --tg-pin is the place's own color (color in _data/travel.yml), set inline on chips and pins. */
   .travel-globe .tg-chip::before {
     content: "";
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--tg-accent);
+    background: var(--tg-pin, var(--tg-accent));
+    box-shadow: 0 0 0 1.5px var(--tg-pin-2, transparent);
   }
 
   .travel-globe .tg-chip.tg-empty::before {
     background: transparent;
-    box-shadow: inset 0 0 0 1.5px var(--tg-accent);
+    box-shadow: inset 0 0 0 1.5px var(--tg-pin, var(--tg-accent));
   }
 
   .travel-globe .tg-chip[aria-pressed="true"] {
-    border-color: var(--tg-accent);
+    border-color: var(--tg-pin, var(--tg-accent));
     background: var(--tg-soft);
+  }
+
+  .travel-globe .tg-chip-when {
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--global-text-color-light);
   }
 
   /* Pins: globe.gl positions .tg-pin-anchor, the button inside scales freely. */
@@ -166,11 +180,11 @@ _styles: |
     height: 28px;
     padding: 0;
     border-radius: 50%;
-    border: 2px solid var(--global-bg-color);
+    border: 2px solid var(--tg-pin-2, var(--global-bg-color)); /* color2 (e.g. Tokyo's white) */
     box-shadow:
-      0 0 0 2px var(--tg-accent),
+      0 0 0 2px var(--tg-pin, var(--tg-accent)),
       0 4px 10px rgba(0, 0, 0, 0.25);
-    background: var(--tg-accent) center / cover no-repeat;
+    background: var(--tg-pin, var(--tg-accent)) center / cover no-repeat;
     cursor: pointer;
     transition:
       transform 0.15s ease,
@@ -211,6 +225,45 @@ _styles: |
     opacity: 1;
   }
 
+  /* Plane, car or train for the "2026 travel tour": travel-globe.js positions it over the canvas each frame. */
+  .travel-globe .tg-vehicle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 26px;
+    height: 26px;
+    margin: -13px 0 0 -13px;
+    z-index: 1000; /* globe.gl gives each pin a z-index up to the pin count */
+    color: var(--tg-vehicle);
+    filter: drop-shadow(0 0 1.5px var(--global-bg-color)) drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+  }
+
+  .travel-globe .tg-vehicle.tg-moving {
+    opacity: 1;
+  }
+
+  .travel-globe .tg-vehicle svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+  }
+
+  .travel-globe .tg-vehicle .tg-icon-car,
+  .travel-globe .tg-vehicle .tg-icon-train,
+  .travel-globe .tg-vehicle.tg-by-car .tg-icon-plane,
+  .travel-globe .tg-vehicle.tg-by-train .tg-icon-plane {
+    display: none;
+  }
+
+  .travel-globe .tg-vehicle.tg-by-car .tg-icon-car,
+  .travel-globe .tg-vehicle.tg-by-train .tg-icon-train {
+    display: block;
+  }
+
   /* globe.gl's built-in country tooltip */
   .travel-globe .float-tooltip-kap,
   .travel-globe .scene-tooltip {
@@ -235,6 +288,8 @@ _styles: |
   }
 
   .travel-globe .tg-card-photo {
+    position: relative;
+    overflow: hidden;
     aspect-ratio: 4 / 3;
     max-width: 100%;
     background: var(--tg-soft) center / cover no-repeat;
@@ -244,6 +299,15 @@ _styles: |
     color: var(--global-text-color-light);
     font-size: 0.82rem;
     padding: 16px;
+  }
+
+  /* photo_focus and photo_zoom from _data/travel.yml set object-position, transform-origin and scale. */
+  .travel-globe .tg-card-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .travel-globe .tg-card-photo.tg-empty {
@@ -312,7 +376,7 @@ _styles: |
 
 <div class="travel-globe">
   <div class="tg-controls">
-    <button type="button" class="tg-btn" id="tg-tour">Fly through pins</button>
+    <button type="button" class="tg-btn" id="tg-tour">2026 travel tour</button>
     <button type="button" class="tg-btn" id="tg-reset">Reset view</button>
   </div>
 
@@ -327,7 +391,10 @@ _styles: |
     </div>
 
     <aside class="tg-card" aria-live="polite">
-      <div class="tg-card-photo tg-empty" id="tg-card-photo" role="img" aria-label="Photo coming soon."><span>Photo coming soon.</span></div>
+      <div class="tg-card-photo tg-empty" id="tg-card-photo">
+        <img class="tg-card-img" id="tg-card-img" alt="" hidden>
+        <span>Photo coming soon.</span>
+      </div>
       <div class="tg-card-body">
         <p class="tg-region" id="tg-card-region"></p>
         <h2 class="tg-place" id="tg-card-place"></h2>
