@@ -14,12 +14,8 @@ layout: default
     {% if page.social %}
       <div class="social social-top">
         <div class="contact-icons">{% social_links %}</div>
-        {% if site.data.socials.email %}
-          <a class="contact-email" href="mailto:{{ site.data.socials.email }}">{{ site.data.socials.email }}</a>
-        {% endif %}
       </div>
     {% endif %}
-    <p class="desc">{{ page.subtitle }}</p>
   </header>
 
   <article>
@@ -45,6 +41,14 @@ layout: default
         {% endif %}
       </div>
     {% endif %}
+
+    {% comment %} Email and subtitle come after the photo so they start level with its top and run down its side {% endcomment %}
+    {% if page.social and site.data.socials.email %}
+      <div class="social social-top">
+        <a class="contact-email" href="mailto:{{ site.data.socials.email }}">{{ site.data.socials.email }}</a>
+      </div>
+    {% endif %}
+    <p class="desc">{{ page.subtitle }}</p>
 
     <div class="clearfix">{{ content }}</div>
 
