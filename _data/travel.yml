@@ -9,6 +9,7 @@
 #        The "Travel tour" visits dated places oldest first, then undated ones in file order.
 #        date_label replaces the card's date text (e.g. "Since 2024 – Present"); date still sets the order.
 # by:    how you got here from the previous stop on the tour: car, train or plane (plane if left out).
+# current: true on where you live now. The page opens on it with a "Current location" tag on the globe.
 # home:  true on the home base. back_home: car, train or plane on the last place of a trip makes the tour
 #        stop briefly at home before the next trip (or end there after the last trip); leave it out to go
 #        straight on (Tokyo, Nara, Hong Kong).
@@ -20,10 +21,11 @@
   lng: -118.2851
   photo: /assets/img/travel/los-angeles.jpg
   photo_focus: "50% 85%"
-  caption: USC, MS Computer Science.
+  caption:
   date: "2024"
   date_label: "Since 2024 – Present"
   home: true
+  current: true
 
 - place: Tokyo
   region: Japan

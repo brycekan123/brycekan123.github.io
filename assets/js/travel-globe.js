@@ -63,6 +63,7 @@
       color2: /^#[0-9a-f]{6}$/i.test(p.color2) ? p.color2 : "",
       by: p.by === "car" || p.by === "train" ? p.by : "plane",
       home: p.home === true,
+      current: p.current === true,
       backHome: ["car", "train", "plane"].includes(p.back_home) ? p.back_home : "",
     }));
 
@@ -86,7 +87,26 @@
   vehicleEl.innerHTML = VEHICLE_SVG;
   globeEl.after(vehicleEl);
 
-  const home = () => ({ lat: 36, lng: -108, altitude: globeEl.clientWidth < 520 ? 2.3 : 1.7 });
+  // Where you live now: the page opens on it, Reset view returns to it, and a tag on the globe names it.
+  const currentPlace = places.find((p) => p.current) || null;
+  const home = () => ({
+    lat: currentPlace ? currentPlace.lat : 36,
+    lng: currentPlace ? currentPlace.lng : -108,
+    altitude: globeEl.clientWidth < 520 ? 2.3 : 1.7,
+  });
+
+  if (currentPlace) {
+    const currentEl = document.createElement("button");
+    currentEl.type = "button";
+    currentEl.className = "tg-current";
+    if (currentPlace.color) currentEl.style.setProperty("--tg-pin", currentPlace.color);
+    currentEl.textContent = `Current location: ${currentPlace.place}`;
+    currentEl.addEventListener("click", () => {
+      stopTour();
+      select(currentPlace, { fly: true });
+    });
+    globeEl.after(currentEl);
+  }
 
   // "2024" stays "2024"; "2024-03" and "2024-03-15" become "Mar 2024". No new Date(), which shifts by timezone.
   function formatDate(value) {
@@ -315,6 +335,7 @@
 
   // Small timeline tag in front of each chip: "Home" for the home base, else the month (or year) of the visit.
   function chipWhen(p) {
+    if (p.current) return "Current";
     if (p.home) return "Home";
     const m = /^(\d{4})(?:-(\d{1,2}))?/.exec(p.date);
     if (!m) return "";
@@ -413,8 +434,11 @@
       })
       .onGlobeReady(() => {
         loadingEl.remove();
-        // Pins behind the globe are only hidden on a camera change, so signal one once they exist.
-        requestAnimationFrame(() => world.controls().dispatchEvent({ type: "change" }));
+        // Pins behind the globe are only hidden on a camera change, so signal one once they exist, and again
+        // after globe.gl's 1.2 s spin-in, which turns the whole scene and leaves the first check stale.
+        const recheckPins = () => world.controls().dispatchEvent({ type: "change" });
+        requestAnimationFrame(recheckPins);
+        if (!reduceMotion) setTimeout(recheckPins, 1300);
       });
 
     const controls = world.controls();
@@ -448,6 +472,7 @@
     stopTour();
     routes = [];
     drawRoutes();
+    if (currentPlace) select(currentPlace);
     if (world) world.pointOfView(home(), flyMs);
   });
   tourBtn.addEventListener("click", () => (tour ? stopTour() : startTour()));
@@ -456,6 +481,6 @@
   new MutationObserver(paint).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
   buildChips();
-  if (tourOrder.length) select(tourOrder[0]);
+  if (currentPlace || tourOrder.length) select(currentPlace || tourOrder[0]);
   loadGlobe();
 })();

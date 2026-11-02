@@ -109,6 +109,39 @@ _styles: |
     pointer-events: none;
   }
 
+  /* "Current location" tag from the place marked current in _data/travel.yml; click to fly back there. */
+  .travel-globe .tg-current {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    z-index: 1001; /* above the pins and the tour vehicle */
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--global-text-color);
+    background: var(--global-card-bg-color);
+    border: 1px solid var(--global-divider-color);
+    border-radius: 999px;
+    padding: 4px 12px 4px 9px;
+    cursor: pointer;
+  }
+
+  .travel-globe .tg-current::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--tg-pin, var(--tg-accent));
+  }
+
+  .travel-globe .tg-current:focus-visible {
+    outline: 2px solid var(--tg-ink);
+    outline-offset: 2px;
+  }
+
   .travel-globe .tg-loading {
     position: absolute;
     inset: 0;
