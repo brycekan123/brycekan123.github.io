@@ -10,7 +10,7 @@ ninja.data = [{
       window.location.href = "/";
     },
   },{id: "nav-cv",
-          title: "CV",
+          title: "cv",
           description: "My academic and professional background in LLM post-training, agentic AI, and NLP.",
           section: "Navigation",
           handler: () => {
@@ -23,9 +23,9 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/publications/";
           },
-        },{id: "nav-2026-travel-summary",
-          title: "2026 Travel Summary",
-          description: "Click to see where I travelled this year!",
+        },{id: "nav-travels",
+          title: "travels",
+          description: "Click to see where I traveled this year!",
           section: "Navigation",
           handler: () => {
             window.location.href = "/travel/";
