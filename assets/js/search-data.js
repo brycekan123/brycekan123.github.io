@@ -23,6 +23,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/publications/";
           },
+        },{id: "nav-travel-page-pending",
+          title: "travel (page pending)",
+          description: "Places I&#39;ve been (starting from 2024).",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/travel/";
+          },
         },{id: "nav-contact",
           title: "contact",
           description: "",
