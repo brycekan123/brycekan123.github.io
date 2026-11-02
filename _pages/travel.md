@@ -1,8 +1,8 @@
 ---
 layout: page
-title: 2026 Travel Summary
+title: travels
 permalink: /travel/
-description: "Click to see where I travelled this year!"
+description: "Click to see where I traveled this year!"
 nav: true
 nav_order: 6
 _styles: |
@@ -225,7 +225,7 @@ _styles: |
     opacity: 1;
   }
 
-  /* Plane, car or train for the "2026 travel tour": travel-globe.js positions it over the canvas each frame. */
+  /* Plane, car or train for the "Travel tour": travel-globe.js positions it over the canvas each frame. */
   .travel-globe .tg-vehicle {
     position: absolute;
     left: 0;
@@ -376,7 +376,7 @@ _styles: |
 
 <div class="travel-globe">
   <div class="tg-controls">
-    <button type="button" class="tg-btn" id="tg-tour">2026 travel tour</button>
+    <button type="button" class="tg-btn" id="tg-tour">Travel tour</button>
     <button type="button" class="tg-btn" id="tg-reset">Reset view</button>
   </div>
 

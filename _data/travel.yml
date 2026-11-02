@@ -6,7 +6,7 @@
 # photo_focus: the part of the photo the card keeps, as "x% y%" ("50% 100%" = bottom middle). Default "50% 50%".
 # photo_zoom:  1.2 zooms in 20% around the focus. Default 1 (the photo just fills the card).
 # date:  "YYYY", "YYYY-MM" or "YYYY-MM-DD" in quotes. Leave it empty until it's filled in.
-#        The "2026 travel tour" visits dated places oldest first, then undated ones in file order.
+#        The "Travel tour" visits dated places oldest first, then undated ones in file order.
 #        date_label replaces the card's date text (e.g. "Since 2024 – Present"); date still sets the order.
 # by:    how you got here from the previous stop on the tour: car, train or plane (plane if left out).
 # home:  true on the home base. back_home: car, train or plane on the last place of a trip makes the tour

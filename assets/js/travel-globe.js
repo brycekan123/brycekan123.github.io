@@ -263,7 +263,7 @@
   function endTour() {
     tour = null;
     vehicleEl.classList.remove("tg-moving");
-    tourBtn.textContent = "2026 travel tour";
+    tourBtn.textContent = "Travel tour";
   }
 
   // Stops a running tour; finished route lines stay, the one in flight is dropped.
