@@ -35,13 +35,21 @@ Outside of research, I've hiked Half Dome, run a marathon, and competed internat
 
 ### Experience
 
-**SWE-Agentic AI Master's Intern** · [Honeywell](https://www.honeywell.com) · _May 2026 – Aug 2026_ · Atlanta, GA
+<div class="org-header">
+  <img class="org-logo" src="{{ '/assets/img/logos/honeywell.png' | relative_url }}" alt="Honeywell logo">
+  <div class="org-header-text"><strong>SWE-Agentic AI Master's Intern</strong> · <a href="https://www.honeywell.com">Honeywell</a> · Atlanta, GA</div>
+  <div class="org-header-date">May 2026 – Aug 2026</div>
+</div>
 
 - Built **agentic evaluation judge framework** across task completion, context retention, and error recovery scenarios
 - Routed LLM inference across Anthropic and OpenAI via **OpenAI-compatible layer**; built FastAPI-backed data visualizer
 - Dockerized and deployed eval pipeline; integrated **Databricks** model-serving endpoints, tracking per-call cost and latency
 
-**Graduate Research Assistant** · [USC Machine Learning Center](https://mascle.usc.edu) · _Mar 2025 – Present_ · Los Angeles, CA
+<div class="org-header">
+  <img class="org-logo" src="{{ '/assets/img/logos/usc_mascle.png' | relative_url }}" alt="USC Machine Learning Center logo">
+  <div class="org-header-text"><strong>Graduate Research Assistant</strong> · <a href="https://mascle.usc.edu">USC Machine Learning Center</a> · Los Angeles, CA</div>
+  <div class="org-header-date">Mar 2025 – Present</div>
+</div>
 
 _[RaMem: Contextual Reinstatement for Long-Term Agentic Memory](https://arxiv.org/abs/2606.22844)_
 
@@ -57,12 +65,20 @@ _[Student-Job Recommendation System](https://arxiv.org/abs/2602.03097)_
 - Implemented multi-step fine-tuning via dual optimization framework with LoRA, jointly training 2 objectives for ranking (InfoNCE contrastive loss)
 - Achieved up to **2.6× Recall@5** and over **3× NDCG@5** improvement over LLM baselines
 
-**Research Associate** · [Bruker](https://www.bruker.com) · _Jun 2023 – Jul 2024_ · San Jose, CA
+<div class="org-header">
+  <img class="org-logo" src="{{ '/assets/img/logos/bruker.png' | relative_url }}" alt="Bruker logo">
+  <div class="org-header-text"><strong>Research Associate</strong> · <a href="https://www.bruker.com">Bruker</a> · San Jose, CA</div>
+  <div class="org-header-date">Jun 2023 – Jul 2024</div>
+</div>
 
 - Developed custom Python pipelines to automate experimental data analysis, adapting to evolving scientific demands
 - Designed interactive Plotly dashboards to visualize complex biological datasets, enabling faster data-driven insights
 
-**Process Engineer** · [Applied Materials](https://www.appliedmaterials.com) · _Jan 2022 – Jun 2023_ · Santa Clara, CA
+<div class="org-header">
+  <img class="org-logo" src="{{ '/assets/img/logos/applied_materials.png' | relative_url }}" alt="Applied Materials logo">
+  <div class="org-header-text"><strong>Process Engineer</strong> · <a href="https://www.appliedmaterials.com">Applied Materials</a> · Santa Clara, CA</div>
+  <div class="org-header-date">Jan 2022 – Jun 2023</div>
+</div>
 
 - Launched Lab Inventory Database as final product, delivering full workflow traceability and reducing processing time by **80%**
 - Built automated data visualization pipelines using Pandas and Plotly to extract insights from terabyte-sized datasets
@@ -71,21 +87,16 @@ _[Student-Job Recommendation System](https://arxiv.org/abs/2602.03097)_
 
 ### Education
 
-<table style="width:100%; border-collapse: collapse;">
-  <tr>
-    <td style="width: 44px; padding: 0.5rem 0.75rem 0.5rem 0;">
-      <img src="/assets/img/usc_logo.png" alt="USC" style="height: 36px; width: auto; object-fit: contain;">
-    </td>
-    <td style="padding: 0.5rem 0.5rem;"><strong>MS Computer Science</strong> · <a href="https://www.usc.edu">University of Southern California</a></td>
-    <td style="text-align: right; padding: 0.5rem 0; white-space: nowrap;">2024 – 2026</td>
-  </tr>
-  <tr>
-    <td style="width: 44px; padding: 0.5rem 0.75rem 0.5rem 0;">
-      <img src="/assets/img/uw_logo.png" alt="UW" style="height: 36px; width: auto; object-fit: contain;">
-    </td>
-    <td style="padding: 0.5rem 0.5rem;"><strong>BS Molecular and Cell Biology</strong> · <a href="https://www.washington.edu">University of Washington</a></td>
-    <td style="text-align: right; padding: 0.5rem 0; white-space: nowrap;">2018 – 2021</td>
-  </tr>
-</table>
+<div class="org-header">
+  <img class="org-logo" src="{{ '/assets/img/logos/usc.png' | relative_url }}" alt="USC logo">
+  <div class="org-header-text"><strong>MS Computer Science</strong> · <a href="https://www.usc.edu">University of Southern California</a></div>
+  <div class="org-header-date">2024 – 2026</div>
+</div>
+
+<div class="org-header">
+  <img class="org-logo" src="{{ '/assets/img/logos/uw.png' | relative_url }}" alt="UW logo">
+  <div class="org-header-text"><strong>BS Molecular and Cell Biology</strong> · <a href="https://www.washington.edu">University of Washington</a></div>
+  <div class="org-header-date">2018 – 2021</div>
+</div>
 
 ---

@@ -15,6 +15,7 @@ cv:
   sections:
     Education:
       - institution: University of Southern California
+        logo: /assets/img/logos/usc.png
         location: Los Angeles, CA
         url: https://www.usc.edu/
         area: Computer Science
@@ -25,6 +26,7 @@ cv:
         courses: "Algorithms, Machine Learning, Natural Language Processing, Trustworthy LLMs, Hardware for ML"
 
       - institution: University of Washington
+        logo: /assets/img/logos/uw.png
         location: Seattle, WA
         url: https://www.washington.edu/
         area: Molecular and Cell Biology
@@ -34,6 +36,7 @@ cv:
 
     Experience:
       - company: Honeywell
+        logo: /assets/img/logos/honeywell.png
         position: SWE-Agentic AI Master's Intern
         location: Atlanta, GA
         start_date: 2026-05-01
@@ -44,6 +47,7 @@ cv:
           - Dockerized and deployed eval pipeline; integrated Databricks model-serving endpoints, tracking per-call cost and latency
 
       - company: USC Machine Learning Center
+        logo: /assets/img/logos/usc_mascle.png
         position: Graduate Research Assistant
         location: Los Angeles, CA
         start_date: 2025-03-01
@@ -61,6 +65,7 @@ cv:
           - "Achieved up to 2.6× (Recall@5) and over 3× (NDCG@5) improvement over LLM baselines"
 
       - company: Bruker
+        logo: /assets/img/logos/bruker.png
         position: Research Associate
         location: San Jose, CA
         start_date: 2023-06-01
@@ -70,6 +75,7 @@ cv:
           - Designed interactive Plotly dashboards to visualize complex biological datasets, enabling faster data-driven insights
 
       - company: Applied Materials
+        logo: /assets/img/logos/applied_materials.png
         position: Process Engineer
         location: Santa Clara, CA
         start_date: 2022-01-01

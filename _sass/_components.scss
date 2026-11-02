@@ -298,3 +298,36 @@ ul.task-list input[type="checkbox"] {
 .d2h-diff-table {
   position: relative;
 }
+
+// Organization logos (homepage experience/education and CV entries)
+
+.org-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.org-header-text {
+  flex: 1 1 18rem;
+}
+
+.org-header-date {
+  white-space: nowrap;
+  color: var(--global-text-color-light);
+}
+
+.org-logo {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 36px;
+  object-fit: contain;
+}
+
+// Some logos have black wordmarks, so give every logo a light tile in dark mode
+html[data-theme="dark"] .org-logo {
+  padding: 3px;
+  border-radius: 6px;
+  background-color: #fff;
+}
