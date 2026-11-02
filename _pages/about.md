@@ -27,8 +27,6 @@ I'm Bryce Kan, an ML researcher and CS Master's student at the [University of So
 
 My path into ML started in biology. After studying [Molecular and Cell Biology](https://www.washington.edu/students/gencat/program/S/Biology-112.html#credential-67040893e845e109dda9bb0f) at the [University of Washington](https://www.washington.edu/), I spent 2.5 years in the biotech industry, building automated imaging pipelines at Applied Materials and developing data analysis tools at Bruker for spatial gene expression analysis. Working closely with scientists and engineers there is what got me hooked on machine learning and pushed me to make the full switch into CS.
 
-I'm now fully focused on LLM post-training, agentic AI, and NLP. I want to build models that don't just answer questions but actually remember, reason, and improve through training. Long-term I'm aiming to work as an ML engineer or researcher in this space.
-
 Outside of research, I've hiked Half Dome, run a marathon, and competed internationally in junior badminton.
 
 ---
