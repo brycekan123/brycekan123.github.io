@@ -23,9 +23,9 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/publications/";
           },
-        },{id: "nav-travel-page-pending",
-          title: "travel (page pending)",
-          description: "Places I&#39;ve been (starting from 2024).",
+        },{id: "nav-2026-travel-summary",
+          title: "2026 Travel Summary",
+          description: "Click to see where I travelled this year!",
           section: "Navigation",
           handler: () => {
             window.location.href = "/travel/";
