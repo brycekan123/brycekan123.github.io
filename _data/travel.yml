@@ -34,6 +34,7 @@
   lat: 35.6762
   lng: 139.6503
   photo: /assets/img/travel/tokyo.jpg
+  photo_focus: "50% 20%"
   caption:
   date: "2026-01-01"
   by: plane
